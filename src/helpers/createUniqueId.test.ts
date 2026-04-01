@@ -16,6 +16,6 @@ describe('createUniqueId', () => {
 
   it('should generate an ID of the expected length', () => {
     const id = createUniqueId();
-    expect(id.length).toBeGreaterThan(10);
+    expect(id.length).toEqual(8);
   });
 });

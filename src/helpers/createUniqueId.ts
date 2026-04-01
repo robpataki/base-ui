@@ -1,3 +1,5 @@
 export const createUniqueId = (prefix?: string): string => {
-  return prefix ? `${prefix}-${crypto.randomUUID()}}` : crypto.randomUUID();
+  const randomId = crypto.randomUUID();
+  const firstChunk = randomId.split('-')[0];
+  return prefix ? `${prefix}-${firstChunk}` : firstChunk;
 };
