@@ -6,7 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "strict": true,
-    "ignoreDeprecations": "5.0",
+    "ignoreDeprecations": "6.0",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
