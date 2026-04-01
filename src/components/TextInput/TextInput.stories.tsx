@@ -8,9 +8,13 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A flexible text input component with support for labels, error states, helper text, and accessibility features.'
+        component:
+          'A flexible text input component with support for labels, error states, helper text, and accessibility features.'
       }
     }
+  },
+  args: {
+    label: 'Username'
   },
   tags: ['autodocs']
 } satisfies Meta<typeof TextInput>;
@@ -24,21 +28,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 /**
- * TextInput with a label.
- */
-export const WithLabel: Story = {
-  args: {
-    label: 'Full Name'
-  }
-};
-
-/**
  * TextInput with helper text to provide additional context.
  */
 export const WithHint: Story = {
   args: {
     label: 'Email',
-    hint: "We'll never share your email."
+    hint: "We'll never share your email"
   }
 };
 
@@ -48,9 +43,8 @@ export const WithHint: Story = {
 export const WithError: Story = {
   args: {
     label: 'Email',
-    hint: 'For example you@example.com',
-    error: 'Please enter a valid email address',
-    isError: true
+    hint: 'For example, you@example.com',
+    error: "We'll never share your email"
   }
 };
 
@@ -60,13 +54,13 @@ export const WithError: Story = {
 export const Disabled: Story = {
   args: {
     label: 'Username',
-    disabled: true,
-    value: 'john_doe'
+    isDisabled: true,
+    value: 'JohnDoe123'
   }
 };
 
 /**
- * TextInput with a pre-filled value.
+ * TextInput with a pre-filled value. component is controlled and requires an onChange handler to update the value.
  */
 export const WithValue: Story = {
   args: {
@@ -76,11 +70,21 @@ export const WithValue: Story = {
 };
 
 /**
+ * TextInput with a default value. Component is uncontrolled and manages its own state.
+ */
+export const WithDefaultValue: Story = {
+  args: {
+    label: 'Username',
+    defaultValue: 'john_doe'
+  }
+};
+
+/**
  * TextInput with maxLength constraint.
  */
 export const WithMaxLength: Story = {
   args: {
-    label: 'Phone Number',
+    label: 'Phone number',
     maxLength: 10,
     hint: 'Maximum 10 characters'
   }
@@ -97,12 +101,12 @@ export const Required: Story = {
 };
 
 /**
- * TextInput with longer hint text.
+ * Custom styles
  */
-export const Complex: Story = {
+export const CustomStyles: Story = {
   args: {
-    label: 'Website URL',
-    hint: 'Include the protocol (http:// or https://)'
+    label: 'First name',
+    className: 'custom-text-input'
   }
 };
 
@@ -111,11 +115,21 @@ export const Complex: Story = {
  */
 export const FormExample: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '420px' }}>
-      <TextInput label='First Name' hint='Your legal first name' />
-      <TextInput label='Last Name' hint='Your legal last name' />
-      <TextInput label='Email' hint="We'll use this to contact you" />
-      <TextInput label='Confirm Email' error='Email addresses do not match' isError={true} />
+    <div
+      style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '420px' }}
+    >
+      <TextInput label='First name' hint='Your legal first name' defaultValue='John' />
+      <TextInput label='Last name' hint='Your legal last name' defaultValue='Doe' />
+      <TextInput
+        label='Email'
+        hint="We'll use this to contact you"
+        defaultValue='john@doe.com'
+      />
+      <TextInput
+        label='Confirm email'
+        error='Email addresses do not match'
+        defaultValue='jon@doe.com'
+      />
     </div>
   )
 };

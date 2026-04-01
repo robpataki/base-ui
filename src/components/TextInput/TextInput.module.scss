@@ -1,9 +1,19 @@
+:root {
+  --font-family: menlo, consolas, monaco, adwaita mono, liberation mono, lucida console, monospace;
+  --primary-color: #111;
+  --secondary-color: #6c757d;
+  --error-color: #dc3545;
+}
+
 .wrapper {
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-family: var(--font-family);
+  line-height: 1.5;
 
   &.is-error {
-    color: red;
+    color: var(--error-color);
   }
 }
 
@@ -20,11 +30,22 @@
   margin-bottom: 1rem;
 }
 
+.label {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.hint {
+  color: var(--secondary-color);
+  font-size: 0.9em;
+}
+
 .input {
   box-sizing: border-box;
   width: 100%;
   min-width: 20rem;
   padding: 0.5rem;
-  border: 1px solid #222;
+  color: inherit;
+  border: 2px solid #111;
   border-radius: 4px;
 }
