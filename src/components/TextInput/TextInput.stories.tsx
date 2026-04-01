@@ -21,30 +21,24 @@ type Story = StoryObj<typeof meta>;
 /**
  * The default TextInput with no additional configuration.
  */
-export const Default: Story = {
-  args: {
-    placeholder: 'Enter text...'
-  }
-};
+export const Default: Story = {};
 
 /**
  * TextInput with a label.
  */
 export const WithLabel: Story = {
   args: {
-    label: 'Full Name',
-    placeholder: 'John Doe'
+    label: 'Full Name'
   }
 };
 
 /**
  * TextInput with helper text to provide additional context.
  */
-export const WithHelperText: Story = {
+export const WithHint: Story = {
   args: {
     label: 'Email',
-    placeholder: 'you@example.com',
-    helperText: "We'll never share your email."
+    hint: "We'll never share your email."
   }
 };
 
@@ -54,7 +48,7 @@ export const WithHelperText: Story = {
 export const WithError: Story = {
   args: {
     label: 'Email',
-    placeholder: 'you@example.com',
+    hint: 'For example you@example.com',
     error: 'Please enter a valid email address',
     isError: true
   }
@@ -66,7 +60,6 @@ export const WithError: Story = {
 export const Disabled: Story = {
   args: {
     label: 'Username',
-    placeholder: 'john_doe',
     disabled: true,
     value: 'john_doe'
   }
@@ -88,9 +81,8 @@ export const WithValue: Story = {
 export const WithMaxLength: Story = {
   args: {
     label: 'Phone Number',
-    placeholder: 'Enter your phone number',
     maxLength: 10,
-    helperText: 'Maximum 10 characters'
+    hint: 'Maximum 10 characters'
   }
 };
 
@@ -100,20 +92,17 @@ export const WithMaxLength: Story = {
 export const Required: Story = {
   args: {
     label: 'Password',
-    placeholder: 'Enter password',
     required: true
   }
 };
 
 /**
- * TextInput with longer placeholder and helper text.
+ * TextInput with longer hint text.
  */
 export const Complex: Story = {
   args: {
     label: 'Website URL',
-    placeholder: 'https://example.com',
-    helperText: 'Include the protocol (http:// or https://)',
-    value: ''
+    hint: 'Include the protocol (http:// or https://)'
   }
 };
 
@@ -122,11 +111,11 @@ export const Complex: Story = {
  */
 export const FormExample: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '300px' }}>
-      <TextInput label='First Name' placeholder='John' helperText='Your legal first name' />
-      <TextInput label='Last Name' placeholder='Doe' helperText='Your legal last name' />
-      <TextInput label='Email' placeholder='john@example.com' helperText="We'll use this to contact you" />
-      <TextInput label='Confirm Email' placeholder='john@example.com' error='Email addresses do not match' isError={true} />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '420px' }}>
+      <TextInput label='First Name' hint='Your legal first name' />
+      <TextInput label='Last Name' hint='Your legal last name' />
+      <TextInput label='Email' hint="We'll use this to contact you" />
+      <TextInput label='Confirm Email' error='Email addresses do not match' isError={true} />
     </div>
   )
 };

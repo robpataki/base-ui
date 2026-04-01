@@ -55,6 +55,7 @@
     "@vitejs/plugin-react": "latest",
     "@vitest/coverage-v8": "latest",
     "@vitest/ui": "latest",
+    "classnames": "^2.5.1",
     "jsdom": "latest",
     "prettier": "^3.8.1",
     "react": "^19.0.0",

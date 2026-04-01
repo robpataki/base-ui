@@ -2,121 +2,106 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { TextInput } from './TextInput';
 
 describe('TextInput', () => {
-  it('renders without crashing', () => {
-    render(<TextInput />);
-    expect(screen.getByRole('textbox')).toBeVisible();
+  const defaultMockProps = {
+    label: 'First name',
+    hint: 'What would you like us to call you?',
+    error: 'First name cannot be empty'
+  };
+
+  it('renders', () => {
+    render(<TextInput label={defaultMockProps.label} />);
+    expect(screen.getByRole('textbox', { name: defaultMockProps.label })).toBeVisible();
+    expect(screen.getByText(defaultMockProps.label)).toBeVisible();
   });
 
-  it('renders with a label', () => {
-    render(<TextInput label='Email' />);
-    expect(screen.getByRole('textbox', { name: 'Email' })).toBeVisible();
-    expect(screen.getByText('Email')).toBeVisible();
+  it('renders with non visual label', () => {
+    render(<TextInput aria-label={defaultMockProps.label} />);
+    const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    expect(screen.queryByText(defaultMockProps.label)).toBeNull();
   });
 
-  it('renders with placeholder text', () => {
-    render(<TextInput placeholder='Enter your email' />);
-    const input = screen.getByPlaceholderText('Enter your email');
-    expect(input).toBeInTheDocument();
+  it('renders with custom id', () => {
+    const { container } = render(
+      <TextInput
+        label={defaultMockProps.label}
+        id='custom-id'
+        hint={defaultMockProps.hint}
+        error={defaultMockProps.error}
+      />
+    );
+    const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    const hint = screen.getByText(defaultMockProps.hint);
+    const error = screen.getByText(defaultMockProps.error);
+
+    expect(container.firstChild).toHaveAttribute('id', 'custom-id');
+    expect(input).toHaveAttribute('id', 'custom-id__input');
+    expect(hint).toHaveAttribute('id', 'custom-id__hint');
+    expect(error).toHaveAttribute('id', 'custom-id__error');
+  });
+
+  it('renders with custom css class', () => {
+    render(<TextInput label={defaultMockProps.label} className='custom-class' />);
+    const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    expect(input.parentElement).toHaveClass(/custom-class/);
+  });
+
+  it('disables the input when disabled prop is true', () => {
+    render(<TextInput label={defaultMockProps.label} isDisabled />);
+    const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    expect(input).toBeDisabled();
   });
 
   it('handles input changes', async () => {
     const user = userEvent.setup();
-    const { container } = render(<TextInput />);
-    const input = container.querySelector('input');
-
-    await user.type(input!, 'test value');
-    expect((input as HTMLInputElement).value).toBe('test value');
-  });
-
-  it('associates label with input using htmlFor', () => {
-    const { container } = render(<TextInput label='Username' />);
-    const label = screen.getByText('Username');
-    const input = container.querySelector('input');
-
-    expect(label.getAttribute('for')).toBe(input?.id);
-  });
-
-  it('displays error message when isError is true', () => {
-    render(<TextInput label='Email' error='Invalid email' isError={true} />);
-    const errorMessage = screen.getByText('Invalid email');
-    expect(errorMessage).toBeInTheDocument();
-  });
-
-  it('displays helper text', () => {
-    render(<TextInput label='Password' helperText='Must be at least 8 characters' />);
-    const helperText = screen.getByText('Must be at least 8 characters');
-    expect(helperText).toBeInTheDocument();
-  });
-
-  it('sets aria-invalid when in error state', () => {
-    const { container } = render(<TextInput error='This field is required' isError={true} />);
-    const input = container.querySelector('input');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
-  });
-
-  it('sets aria-invalid to false when not in error state', () => {
-    const { container } = render(<TextInput />);
-    const input = container.querySelector('input');
-    expect(input).toHaveAttribute('aria-invalid', 'false');
-  });
-
-  it('sets aria-describedby when error is present', () => {
-    const { container } = render(<TextInput error='This field is required' isError={true} />);
-    const input = container.querySelector('input');
-    const describedBy = input?.getAttribute('aria-describedby');
-    expect(describedBy).toBeTruthy();
-
-    const messageElement = document.getElementById(describedBy!);
-    expect(messageElement).toBeInTheDocument();
-    expect(messageElement?.textContent).toBe('This field is required');
-  });
-
-  it('sets aria-describedby when helper text is present', () => {
-    const { container } = render(<TextInput helperText='Some helpful info' />);
-    const input = container.querySelector('input');
-    const describedBy = input?.getAttribute('aria-describedby');
-    expect(describedBy).toBeTruthy();
-  });
-
-  it('disables the input when disabled prop is true', () => {
-    const { container } = render(<TextInput disabled={true} />);
-    const input = container.querySelector('input') as HTMLInputElement;
-    expect(input.disabled).toBe(true);
+    const mockOnChange = vi.fn();
+    render(<TextInput label={defaultMockProps.label} onChange={mockOnChange} />);
+    const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    await user.type(input, 'John');
+    expect(input).toHaveValue('John');
+    expect(mockOnChange).toHaveBeenCalledTimes(4);
+    expect(mockOnChange).toHaveBeenCalledWith(
+      expect.objectContaining({ target: expect.objectContaining({ value: 'John' }) })
+    );
   });
 
   it('forwards ref correctly', () => {
     let ref: HTMLInputElement | null = null;
-    const { container } = render(
+    render(
       <TextInput
         ref={el => {
           ref = el;
         }}
+        label={defaultMockProps.label}
       />
     );
-    const input = container.querySelector('input');
+    const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    ref!.focus();
+
     expect(ref).toBe(input);
+    expect(input).toHaveFocus();
   });
 
   it('passes through standard input attributes', () => {
-    const { container } = render(<TextInput placeholder='test placeholder' maxLength={50} required={true} />);
-    const input = container.querySelector('input') as HTMLInputElement;
-    expect(input.placeholder).toBe('test placeholder');
+    render(<TextInput label={defaultMockProps.label} maxLength={50} required={true} />);
+    const input = screen.getByRole('textbox', {
+      name: defaultMockProps.label
+    }) as HTMLInputElement;
     expect(input.maxLength).toBe(50);
     expect(input.required).toBe(true);
   });
 
   it('generates unique IDs for multiple instances', () => {
-    const { container } = render(
+    render(
       <>
-        <TextInput label='First' />
-        <TextInput label='Second' />
+        <TextInput label={defaultMockProps.label} />
+        <TextInput label={defaultMockProps.label} />
       </>
     );
-    const inputs = container.querySelectorAll('input');
+    const inputs = screen.getAllByRole('textbox');
     const firstId = inputs[0].id;
     const secondId = inputs[1].id;
     expect(firstId).not.toBe(secondId);
@@ -124,5 +109,46 @@ describe('TextInput', () => {
 
   it('displays displayName for debugging', () => {
     expect(TextInput.displayName).toBe('TextInput');
+  });
+
+  describe('ARIA description associations', () => {
+    it('renders with hint text', () => {
+      render(<TextInput label={defaultMockProps.label} hint={defaultMockProps.hint} />);
+      const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+      const hint = screen.getByText(defaultMockProps.hint);
+      expect(hint).toBeVisible();
+      expect(input).toHaveAttribute('aria-describedby', hint.getAttribute('id'));
+    });
+
+    it('renders error state', () => {
+      const { container } = render(
+        <TextInput label={defaultMockProps.label} error={defaultMockProps.error} />
+      );
+      const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+      const error = screen.getByText(defaultMockProps.error);
+
+      expect(error).toBeVisible();
+      expect(input).toHaveAttribute('aria-describedby', error.getAttribute('id'));
+      expect(input).toHaveAttribute('aria-invalid', 'true');
+      expect(container.firstChild).toHaveClass(/is-error/);
+    });
+
+    it('renders with hint and error text', () => {
+      render(
+        <TextInput
+          label={defaultMockProps.label}
+          hint={defaultMockProps.hint}
+          error={defaultMockProps.error}
+        />
+      );
+      const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+      const hint = screen.getByText(defaultMockProps.hint);
+      const error = screen.getByText(defaultMockProps.error);
+
+      expect(input).toHaveAttribute(
+        'aria-describedby',
+        `${hint.getAttribute('id')} ${error.getAttribute('id')}`
+      );
+    });
   });
 });

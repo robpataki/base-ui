@@ -1,19 +1,30 @@
-.form-control {
-  input[type='text'],
-  input[type='email'],
-  input[type='password'],
-  textarea {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.2s ease-in-out;
-  }
+.wrapper {
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
 
-  label,
-  input,
-  &__hint {
-    display: block;
+  &.is-error {
+    color: red;
   }
+}
+
+.label,
+.input,
+.hint,
+.error {
+  display: block;
+}
+
+.label,
+.input,
+.error {
+  margin-bottom: 1rem;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 20rem;
+  padding: 0.5rem;
+  border: 1px solid #222;
+  border-radius: 4px;
 }
