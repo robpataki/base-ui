@@ -8,7 +8,7 @@ pnpm-debug.log*
 # Production
 dist/
 build/
-.storybook/static/
+storybook-static/
 
 # Testing
 coverage/
