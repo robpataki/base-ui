@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from 'storybook/actions';
 import { TextInput } from './TextInput';
 
 const meta = {
@@ -14,7 +15,8 @@ const meta = {
     }
   },
   args: {
-    label: 'Username'
+    label: 'Username',
+    onChange: action('onChange')
   },
   tags: ['autodocs']
 } satisfies Meta<typeof TextInput>;
@@ -106,7 +108,9 @@ export const Required: Story = {
 export const CustomStyles: Story = {
   args: {
     label: 'First name',
-    className: 'custom-text-input'
+    hint: 'What shall we call you?',
+    error: 'First name cannot be empty',
+    className: 'my-custom-text-input'
   }
 };
 

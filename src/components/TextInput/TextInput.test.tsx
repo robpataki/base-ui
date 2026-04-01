@@ -111,6 +111,54 @@ describe('TextInput', () => {
     expect(TextInput.displayName).toBe('TextInput');
   });
 
+  describe('CSS class names', () => {
+    it('renders elements with correct class names', () => {
+      render(
+        <TextInput
+          label={defaultMockProps.label}
+          hint={defaultMockProps.hint}
+          error={defaultMockProps.error}
+        />
+      );
+      const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+      const wrapper = input.parentElement;
+      const label = screen.getByText(defaultMockProps.label);
+      const hint = screen.getByText(defaultMockProps.hint);
+      const error = screen.getByText(defaultMockProps.error);
+
+      expect(wrapper).toHaveClass(/_wrapper_/);
+      expect(wrapper).toHaveClass(/is-error/);
+      expect(input).toHaveClass(/_input_/);
+      expect(label).toHaveClass(/_label_/);
+      expect(hint).toHaveClass(/_hint_/);
+      expect(error).toHaveClass(/_error_/);
+    });
+
+    it('renders elements with correct class names with custom class', () => {
+      render(
+        <TextInput
+          className='my-custom-class'
+          label={defaultMockProps.label}
+          hint={defaultMockProps.hint}
+          error={defaultMockProps.error}
+        />
+      );
+      const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+      const wrapper = input.parentElement;
+      const label = screen.getByText(defaultMockProps.label);
+      const hint = screen.getByText(defaultMockProps.hint);
+      const error = screen.getByText(defaultMockProps.error);
+
+      expect(wrapper).toHaveClass(/_wrapper_/);
+      expect(wrapper).toHaveClass(/my-custom-class/);
+      expect(wrapper).toHaveClass(/is-error/);
+      expect(input).toHaveClass(/_input_/);
+      expect(label).toHaveClass(/_label_/);
+      expect(hint).toHaveClass(/_hint_/);
+      expect(error).toHaveClass(/_error_/);
+    });
+  });
+
   describe('ARIA description associations', () => {
     it('renders with hint text', () => {
       render(<TextInput label={defaultMockProps.label} hint={defaultMockProps.hint} />);

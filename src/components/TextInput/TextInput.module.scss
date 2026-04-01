@@ -14,6 +14,10 @@
 
   &.is-error {
     color: var(--error-color);
+
+    .input {
+      border-color: var(--error-color);
+    }
   }
 }
 
@@ -32,12 +36,11 @@
 
 .label {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .hint {
   color: var(--secondary-color);
-  font-size: 0.9em;
 }
 
 .input {
@@ -46,6 +49,7 @@
   min-width: 20rem;
   padding: 0.5rem;
   color: inherit;
+  font-size: 1em;
   border: 2px solid #111;
   border-radius: 4px;
 }
