@@ -1,3 +1,5 @@
+@use '../../styles/mixins';
+
 :root {
   --font-family: menlo, consolas, monaco, adwaita mono, liberation mono, lucida console, monospace;
   --primary-color: #111;
@@ -52,6 +54,8 @@
   font-size: 1em;
   border: 2px solid #111;
   border-radius: 4px;
+
+  @include mixins.focus-indicator;
 }
 
 .label {

@@ -1,3 +1,8 @@
+:root {
+  --a1-col-focus-primary: lime;
+  --a1-col-focus-secondary: black;
+}
+
 @mixin sr-only {
   position: absolute;
   width: 1px;
@@ -8,4 +13,29 @@
   white-space: nowrap;
   border-width: 0;
   clip-path: inset(50%);
+}
+
+@mixin -apply-focus-indicator-styles($-on: true) {
+  @if $-on {
+    outline: 4px solid var(--a1-col-focus-secondary);
+    outline-offset: -4px;
+    box-shadow: 0 0 0 2px var(--a1-col-focus-primary);
+  } @else {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+@mixin focus-indicator {
+  &:focus {
+    @include -apply-focus-indicator-styles(true);
+  }
+
+  &:focus:not(:focus-visible) {
+    @include -apply-focus-indicator-styles(false);
+  }
+
+  &:focus-visible {
+    @include -apply-focus-indicator-styles(true);
+  }
 }
