@@ -17,8 +17,7 @@ const meta = {
   args: {
     label: 'Username',
     onChange: action('onChange')
-  },
-  tags: ['autodocs']
+  }
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
