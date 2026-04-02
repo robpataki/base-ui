@@ -1,0 +1,5 @@
+@use '../../styles/mixins';
+
+.wrapper {
+  @include mixins.sr-only;
+}
