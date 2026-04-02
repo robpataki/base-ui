@@ -14,8 +14,37 @@ const meta = {
       }
     }
   },
+  argTypes: {
+    label: {
+      control: 'text',
+      description:
+        'The visible label for the input field. Either this or aria-label must be provided.'
+    },
+    'aria-label': {
+      control: 'text',
+      description:
+        'The aria-label for the input field. Either this or label must be provided.'
+    },
+    isDisabled: {
+      control: 'boolean',
+      table: {
+        defaultValue: { summary: 'false' }
+      }
+    },
+    errorPrefix: {
+      control: 'text',
+      table: {
+        defaultValue: { summary: 'Error' }
+      }
+    },
+    onChange: {
+      description:
+        'Callback function that is called when the input value changes. Receives the change event as an argument.'
+    }
+  },
   args: {
     label: 'Username',
+    isDisabled: false,
     onChange: action('onChange')
   }
 } satisfies Meta<typeof TextInput>;
@@ -33,8 +62,9 @@ export const Default: Story = {};
  */
 export const WithHint: Story = {
   args: {
-    label: 'Email',
-    hint: "We'll never share your email"
+    label: 'Username',
+    maxLength: 10,
+    hint: 'Maximum 10 characters or less.'
   }
 };
 
@@ -44,8 +74,9 @@ export const WithHint: Story = {
 export const WithError: Story = {
   args: {
     label: 'Email',
-    hint: 'For example, you@example.com',
-    error: "We'll never share your email"
+    defaultValue: 'john@',
+    hint: "We'll use this to contact you",
+    error: 'Must be a valid email address'
   }
 };
 
@@ -56,7 +87,8 @@ export const Disabled: Story = {
   args: {
     label: 'Username',
     isDisabled: true,
-    value: 'JohnDoe123'
+    value: 'JohnDoe123',
+    hint: 'You cannot change your username.'
   }
 };
 
@@ -81,28 +113,32 @@ export const WithDefaultValue: Story = {
 };
 
 /**
- * TextInput with maxLength constraint.
- */
-export const WithMaxLength: Story = {
-  args: {
-    label: 'Phone number',
-    maxLength: 10,
-    hint: 'Maximum 10 characters'
-  }
-};
-
-/**
- * TextInput with required attribute.
- */
-export const Required: Story = {
-  args: {
-    label: 'Password',
-    required: true
-  }
-};
-
-/**
- * Custom styles
+ *
+ * The following selectors can be used to target specific parts of the TextInput component:
+ *
+ * - **Wrapper element:** `[class*='_wrapper_']`
+ * - **Input field:** `[class*='_input_']`
+ * - **Label:** `[class*='_label_']`
+ * - **Hint text:** `[class*='_hint_']`
+ * - **Error message:** `[class*='_error_']`
+ *
+ * ```css
+ * .my-custom-text-input {
+ *   &[class*='_wrapper_'] {
+ *    // custom wrapper styles
+ *   }
+ *
+ *   &[class*='_label_'] {
+ *     // custom label styles
+ *   }
+ *
+ *  &[class*='_input_'] {
+ *     // custom input styles
+ *   }
+ * }
+ * ```
+ *
+ * This story uses styles directly from the `TextInput.customStyles.scss` file, which is imported in `preview.tsx`. You can modify the styles there to see the changes reflected in this story.
  */
 export const CustomStyles: Story = {
   args: {
@@ -114,24 +150,34 @@ export const CustomStyles: Story = {
 };
 
 /**
- * Multiple TextInput fields in a form layout.
+ * Multiple TextInput fields in a form layout using custom styles.
  */
-export const FormExample: Story = {
+export const FormWithCustomStylesExample: Story = {
   render: () => (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '420px' }}
-    >
-      <TextInput label='First name' hint='Your legal first name' defaultValue='John' />
-      <TextInput label='Last name' hint='Your legal last name' defaultValue='Doe' />
+    <div className='my-custom-form'>
+      <TextInput
+        label='First name'
+        hint='Your legal first name'
+        defaultValue='John'
+        className='my-custom-text-input'
+      />
+      <TextInput
+        label='Last name'
+        hint='Your legal last name'
+        defaultValue='Doe'
+        className='my-custom-text-input'
+      />
       <TextInput
         label='Email'
         hint="We'll use this to contact you"
         defaultValue='john@doe.com'
+        className='my-custom-text-input'
       />
       <TextInput
         label='Confirm email'
         error='Email addresses do not match'
         defaultValue='jon@doe.com'
+        className='my-custom-text-input'
       />
     </div>
   )

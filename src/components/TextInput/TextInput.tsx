@@ -1,25 +1,16 @@
 import classNames from 'classnames';
 import { forwardRef } from 'react';
+import { COMPONENT_IDS } from '@/constants';
 import { createUniqueId } from '@/helpers/createUniqueId';
+import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import styles from './TextInput.module.scss';
 import type { TextInputProps } from './TextInput.type';
 
-/**
- * TextInput component for user text input with optional label, error, and helper text.
- *
- * @example
- * ```tsx
- * <TextInput
- *   label="Email"
- *   value={email}
- *   onChange={(e) => setEmail(e.target.value)}
- * />
- * ```
- */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
     label,
     error,
+    errorPrefix = 'Error',
     hint,
     isDisabled,
     id: _id,
@@ -33,6 +24,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   const hintId = `${id}__hint`;
 
   const className = classNames(
+    COMPONENT_IDS.TextInput,
     styles.wrapper,
     {
       [styles['is-error']]: error,
@@ -53,6 +45,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
       )}
       {error && (
         <div id={errorId} className={styles.error}>
+          {errorPrefix && <VisuallyHidden>{errorPrefix}: </VisuallyHidden>}
           {error}
         </div>
       )}

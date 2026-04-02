@@ -1,0 +1,122 @@
+@use 'sass:color';
+
+%focus-indicator-border {
+  &::before {
+    position: absolute;
+    top: -1.4rem;
+    left: -2rem;
+    display: block;
+    width: 0;
+    height: calc(100% + 2rem + 1.5rem);
+    background-color: rgb(0 0 0 / 80%);
+    transition:
+      width 0.1s ease-out,
+      background-color 0.2s ease-out;
+    content: '';
+  }
+}
+
+:root {
+  --focus-indicator-width: 0.6rem;
+}
+
+.my-custom-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 26rem;
+  padding: 1.4rem 2rem;
+  overflow: hidden;
+  background: rgb(0 0 0 / 3%);
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgb(0 0 0 / 20%);
+
+  .a1-text-input {
+    &[class*='_wrapper_'] {
+      position: relative;
+
+      @extend %focus-indicator-border;
+
+      &:focus-within::before {
+        width: var(--focus-indicator-width);
+      }
+
+      &[class*='_is-error_'] {
+        &:focus-within::before {
+          background-color: color.adjust(crimson, $lightness: -20%);
+        }
+      }
+    }
+
+    [class*='_input_'] {
+      width: 100%;
+    }
+
+    &:last-child {
+      &,
+      [class*='_input_'] {
+        margin-bottom: 0;
+      }
+    }
+
+    &:not(:last-child) {
+      &::after {
+        position: absolute;
+        right: 0;
+        left: 0;
+        display: block;
+        height: 3px;
+        margin-top: 2rem;
+        background-color: rgb(255 255 255 / 60%);
+        transition: background-color 0.2s ease-out;
+        content: '';
+      }
+
+      &:focus-within::after {
+        background-color: rgb(0 0 0 / 5%);
+      }
+    }
+  }
+}
+
+.my-custom-text-input {
+  --default-font-color: black;
+  --error-font-color: crimson;
+
+  &[class*='_wrapper_'] {
+    color: var(--default-font-color);
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'segoe ui', 'helvetica neue', 'Adwaita Sans', Cantarell, Ubuntu, roboto,
+      noto, helvetica, arial, sans-serif;
+
+    &[class*='_is-error_'] {
+      color: var(--error-font-color);
+
+      @extend %focus-indicator-border;
+
+      &::before {
+        width: var(--focus-indicator-width);
+        background-color: currentcolor;
+      }
+
+      [class*='_input_'] {
+        background-color: transparent;
+      }
+    }
+  }
+
+  [class*='_input_'] {
+    background-color: rgb(0 0 0 / 2%);
+    border: 3px solid black;
+    border-radius: 0;
+  }
+
+  [class*='_label_'],
+  [class*='_hint_'],
+  [class*='_error_'] {
+    color: inherit;
+  }
+}

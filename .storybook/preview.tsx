@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import '../src/components/TextInput/TextInput.custom.style.module.scss';
+import '../src/components/TextInput/TextInput.customStyles.scss';
 
 const preview: Preview = {
   parameters: {

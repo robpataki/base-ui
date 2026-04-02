@@ -19,6 +19,14 @@
       border-color: var(--error-color);
     }
   }
+
+  &.is-disabled {
+    .input {
+      color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      cursor: not-allowed;
+    }
+  }
 }
 
 .label,
@@ -26,12 +34,24 @@
 .hint,
 .error {
   display: block;
+  font-family: inherit;
 }
 
 .label,
 .input,
 .error {
   margin-bottom: 1rem;
+}
+
+.input {
+  box-sizing: border-box;
+  min-width: 24rem;
+  max-width: 100%;
+  padding: 0.5rem;
+  color: inherit;
+  font-size: 1em;
+  border: 2px solid #111;
+  border-radius: 4px;
 }
 
 .label {
@@ -41,15 +61,4 @@
 
 .hint {
   color: var(--secondary-color);
-}
-
-.input {
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 20rem;
-  padding: 0.5rem;
-  color: inherit;
-  font-size: 1em;
-  border: 2px solid #111;
-  border-radius: 4px;
 }
