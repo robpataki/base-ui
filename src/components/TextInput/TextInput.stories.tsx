@@ -116,27 +116,13 @@ export const WithDefaultValue: Story = {
  *
  * The following selectors can be used to target specific parts of the TextInput component:
  *
- * - **Wrapper element:** `[class*='_wrapper_']`
- * - **Input field:** `[class*='_input_']`
- * - **Label:** `[class*='_label_']`
- * - **Hint text:** `[class*='_hint_']`
- * - **Error message:** `[class*='_error_']`
- *
- * ```css
- * .my-custom-text-input {
- *   &[class*='_wrapper_'] {
- *    // custom wrapper styles
- *   }
- *
- *   &[class*='_label_'] {
- *     // custom label styles
- *   }
- *
- *  &[class*='_input_'] {
- *     // custom input styles
- *   }
- * }
- * ```
+ * - **Global component class:** `a1-text-input`
+ * - **Wrapper element:** `[class*='wrapper']`
+ * - **State classes (on the wrapper):** `[class*='is-error']`, `[class*='is-disabled']`
+ * - **Input field:** `[class*='input']`
+ * - **Label:** `[class*='label']`
+ * - **Hint text:** `[class*='hint']`
+ * - **Error message:** `[class*='error']`
  *
  * This story uses styles directly from the `TextInput.customStyles.scss` file, which is imported in `preview.tsx`. You can modify the styles there to see the changes reflected in this story.
  */

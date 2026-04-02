@@ -30,12 +30,12 @@
   padding: 1.4rem 2rem;
   overflow: hidden;
   background: rgb(0 0 0 / 3%);
-  border: 1px solid #bbb;
+  border: 2px solid white;
   border-radius: 10px;
   box-shadow: 0 0 40px rgb(0 0 0 / 20%);
 
   .a1-text-input {
-    &[class*='_wrapper_'] {
+    &[class*='wrapper'] {
       position: relative;
 
       @extend %focus-indicator-border;
@@ -44,20 +44,20 @@
         width: var(--focus-indicator-width);
       }
 
-      &[class*='_is-error_'] {
+      &[class*='is-error'] {
         &:focus-within::before {
           background-color: color.adjust(crimson, $lightness: -20%);
         }
       }
     }
 
-    [class*='_input_'] {
+    [class*='input'] {
       width: 100%;
     }
 
     &:last-child {
       &,
-      [class*='_input_'] {
+      [class*='input'] {
         margin-bottom: 0;
       }
     }
@@ -68,15 +68,15 @@
         right: 0;
         left: 0;
         display: block;
-        height: 3px;
+        height: 1px;
         margin-top: 2rem;
-        background-color: rgb(255 255 255 / 60%);
+        background-color: rgb(0 0 0 / 5%);
         transition: background-color 0.2s ease-out;
         content: '';
       }
 
       &:focus-within::after {
-        background-color: rgb(0 0 0 / 5%);
+        background-color: rgb(0 0 0 / 25%);
       }
     }
   }
@@ -86,13 +86,13 @@
   --default-font-color: black;
   --error-font-color: crimson;
 
-  &[class*='_wrapper_'] {
+  &[class*='wrapper'] {
     color: var(--default-font-color);
     font-family:
       -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'segoe ui', 'helvetica neue', 'Adwaita Sans', Cantarell, Ubuntu, roboto,
       noto, helvetica, arial, sans-serif;
 
-    &[class*='_is-error_'] {
+    &[class*='is-error'] {
       color: var(--error-font-color);
 
       @extend %focus-indicator-border;
@@ -102,21 +102,21 @@
         background-color: currentcolor;
       }
 
-      [class*='_input_'] {
+      [class*='input'] {
         background-color: transparent;
       }
     }
   }
 
-  [class*='_input_'] {
+  [class*='input'] {
     background-color: rgb(0 0 0 / 2%);
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 0;
   }
 
-  [class*='_label_'],
-  [class*='_hint_'],
-  [class*='_error_'] {
+  [class*='label'],
+  [class*='hint'],
+  [class*='error'] {
     color: inherit;
   }
 }
