@@ -1,0 +1,183 @@
+# Styling guide
+
+Every component come with basic styling applied. This is by design as I want to make sure you can drop the components in your app quickly components are easy to implement and customise in any project in an intuitive way.
+
+## About the styling approach
+
+- Each component wraps their elements inside a single container element (usually a `<div>`) referred to as the "wrapper". (TBC if it's most components or all components)
+- Specificity is applied carefully: Structure and nesting TBA
+- Global component states apply a **_state_** class on the **wrapper**. The naming convention for state class names follows [SMACCS state rules](https://smacss.com/book/type-state/), for example `.is-error` is used when a component is in an error state so all child elements within that state class name can be styled easily.
+
+### Approach
+
+### How to ...
+
+- What if I want to override styles of all input types globally?
+- How do I apply my custom fonts?
+- Use your custom colours?
+- Apply your custom spacing rules?
+- Apply custom responsive breakpoints?
+- Our project uses CSS without sass/scss how can I use these components?
+
+#### CSS
+
+```css
+/* custom-styles.css */
+
+.my-custom-text-input {
+  &[class*='_wrapper_'] {
+    /* wrapper styles */
+
+    &[class*='_is-error_'] {
+      /* wrapper error state styles */
+
+      [class*='_input_'] {
+        /* input error state styles */
+      }
+    }
+  }
+
+  [class*='_input_'] {
+    /* input styles */
+  }
+
+  [class*='_label_'] {
+    /* label styles */
+  }
+
+  [class*='_hint_'] {
+    /* hint text styles */
+  }
+
+  [class*='_error_'] {
+    /* error text styles */
+  }
+}
+```
+
+#### CSS modules
+
+```css
+/* CustomTextInput.module.css */
+
+:global(.custom-text-input) {
+  &[class*='_wrapper_'] {
+    /* wrapper styles */
+
+    &[class*='_is-error_'] {
+      /* wrapper error state styles */
+
+      [class*='_input_'] {
+        /* input error state styles */
+      }
+    }
+  }
+
+  [class*='_input_'] {
+    /* input styles */
+  }
+
+  [class*='_label_'] {
+    /* label styles */
+  }
+
+  [class*='_hint_'] {
+    /* hint text styles */
+  }
+
+  [class*='_error_'] {
+    /* error text styles */
+  }
+}
+```
+
+#### SCSS
+
+```css
+/* CustomTextInput.scss */
+
+.custom-text-input {
+  &[class*='_wrapper_'] {
+    /* wrapper styles */
+
+    &[class*='_is-error_'] {
+      /* wrapper error state styles */
+
+      [class*='_input_'] {
+        /* input error state styles */
+      }
+    }
+  }
+
+  [class*='_input_'] {
+    /* input styles */
+  }
+
+  [class*='_label_'] {
+    /* label styles */
+  }
+
+  [class*='_hint_'] {
+    /* hint text styles */
+  }
+
+  [class*='_error_'] {
+    /* error text styles */
+  }
+}
+```
+
+#### SCSS using CSS modules
+
+```css
+/* CustomTextInput.module.scss */
+
+:global(.custom-text-input) {
+  &[class*='_wrapper_'] {
+    /* wrapper styles */
+
+    &[class*='_is-error_'] {
+      /* wrapper error state styles */
+
+      [class*='_input_'] {
+        /* input error state styles */
+      }
+    }
+  }
+
+  [class*='_input_'] {
+    /* input styles */
+  }
+
+  [class*='_label_'] {
+    /* label styles */
+  }
+
+  [class*='_hint_'] {
+    /* hint text styles */
+  }
+
+  [class*='_error_'] {
+    /* error text styles */
+  }
+}
+```
+
+##
+
+Styling overrides can be applied to the component's elements when using a custom wrapper class name.
+
+The styling specificity is only 1 level deep.
+
+Styling specificity is strategically used in this project to make sure that the elements inside the components can be targeted easily using intuitive and generic class names, but thanks to the "wrapper" approach even global overrides won't cause accidental style overrides.
+
+Style overrides can be applied using global style overrides as well as scoped styles, making it easy to use in any project regardless the framework or stylesheet compiler of choise.
+
+-
+- Our class name based naming convention allows you to target the component's elements with the following selectors:
+
+Pass a custom class name to the component, for example:
+
+```tsx
+<TextInput label="First name" className="my-custom-textinput" />
+```

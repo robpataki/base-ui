@@ -30,7 +30,8 @@ indent_size = 2
 
 # Markdown (preserve formatting quirks)
 
-[*.md]
+[*.{md,mdx}]
+indent_size = 2
 trim_trailing_whitespace = false
 
 # YAML (common in tooling)
