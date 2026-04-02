@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-standard-scss", "stylelint-config-rational-order"],
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss", "stylelint-config-rational-order"],
   "rules": {
     "selector-class-pattern": [
       "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
@@ -22,5 +22,13 @@
         "ignoreProperties": ["composes"]
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.css"],
+      "rules": {
+        "scss/at-rule-no-unknown": null
+      }
+    }
+  ]
 }
