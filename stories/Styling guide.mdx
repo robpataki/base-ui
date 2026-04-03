@@ -1,5 +1,113 @@
 # Styling guide
 
+---
+
+### Structure
+
+Every component renders their children in a wrapper element - usually a simple `<div>` but it can be any semantic HTML element when appropriate. We call this element **"the wrapper"**.
+
+Elements within the wrapper use the minimum amount of semantic and well structured HTML markup that provide an inclusive user experience. 
+
+The wrapper renders the following attributes in the DOM:
+
+- **id:** The `id` prop's value when set. When the `id` prop is not set but the `id` is necessary for the component to function correctly an auto-generated value is used.
+- **data-testid:** Renders the optional `dataTestId` prop to help with automated testing. Using `data-testid` is not encouraged [(actually it's the opposite)](https://testing-library.com/docs/queries/about/#priority) but A1 components support it out of the box. <span style={{color: 'red'}}>Read more about this the TBA link to the "data-testid" section</span>.
+- **class:** By default this is a combination of the **component class name** and the **wrapper class name** which are always present. When the optional **custom class name** is passed to the component (via the `className` prop) it is also appended. When the component is in a non-default state (such as error or disabled) the appropriate **state class name** is appended to the class.
+
+### CSS classes
+
+The A1 styling approach is based on CSS class names...
+
+- **Component class name:** Represents the type of the component within the A1 ecosystem. The sole purpose of this class name is to provide a global query selector for developers and it is not used internally by the component. This is rendered on the wrapper.
+- **Wrapper class name:** Element class name applied to the wrapper. This is rendered on the wrapper.
+- **Custom class name:** The custom class name passed to the component using the `className` prop. This is rendered on the wrapper.
+- **State class name:** This is rendered on the wrapper.
+- **Element class name:** 
+
+#### Component class names
+
+- **Text input:** `a1-text-input`
+- **Visually hidden:** `a1-visually-hidden`
+- <span style={{color: 'red'}}>TBA</span>
+
+#### State rules
+
+Component states that change the styling of one or more child element are called state rules. State based class names are rendered on the wrapper (for example `is-error` or `is-disabled`) to turn on and off the state rule specific styles.
+
+The naming convention for state class names follows the [SMACCS state rules](https://smacss.com/book/type-state/). By design there is no state specified, the component is in default state. 
+
+#### State examples
+
+- Error state (in text input): `is-error`
+- Disabled state (in button): `is-disabled`
+- Toggled state (in toggle button): `is-toggled`
+- Expanded state (in accordion item): `is-expanded`
+
+Style nesting and specificity is carefully used within components to only apply state based styles to child elements.
+
+---
+
+
+### The Wrapper
+
+The component class name is global and never changes, so it reliably can be used to target component instances, whereas every other class name within the component gets somewhat scrambled depending on CSS processor.
+
+### Override component styles
+
+To target component children it's best to use the element class name either nested within the component class name or the custom class name when specified. 
+
+### Targeting strategies
+
+- To change the styling of all instances of a component it's best to target it by its component class name, for example `.a1-text-input`.
+- When changing the styling of a specific component instance use a custom class name, for example `my-custom-text-input`.
+
+To target the component's children use their element class names. Each component is different, so for the element class names check the component docs or the source code.
+
+To target elements with state style overrides make sure you use the [nesting selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Nesting_selector) to create the correct [compound selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Selectors/Selector_structure#compound_selector).
+
+The following example uses vanilla CSS to set the default and error state styling of the input element of a specific instance of the TextInput component:
+
+```css
+  .my-custom-text-input {
+    &[class*='is-error'] {
+      [class*='input'] {
+        color: red;
+        border: red;
+      }
+    }
+
+    [class*='input'] {
+      color: blue;
+      border: blue;
+    }
+  }
+```
+
+
+> (for example `a1-text-input`). For example a **TextInput** component with a custom class name will render with the following classes names: `a1-text-input wrapper my-component` (compiler will scramble the wrapper and my component names)
+
+### TextInput example
+
+
+
+
+
+- The custom class name passed to the component is applied to the wrapper.
+
+- Component class: a1-text-input - use this to globally style A1 TextInput components, or combine with custom class name to target specific instances.
+- Wrapper element: [class*='wrapper']
+- State classes (on the wrapper): [class*='is-error'], [class*='is-disabled']
+- Input field: [class*='input']
+- Label: [class*='label']
+- Hint text: [class*='hint']
+- Error message: [class*='error']
+
+
+
+---
+
+
+
 Every component come with basic styling applied. This is by design as I want to make sure you can drop the components in your app quickly components are easy to implement and customise in any project in an intuitive way.
 
 ## About the styling approach
@@ -7,6 +115,8 @@ Every component come with basic styling applied. This is by design as I want to 
 - Each component wraps their elements inside a single container element (usually a `<div>`) referred to as the "wrapper". (TBC if it's most components or all components)
 - Specificity is applied carefully: Structure and nesting TBA
 - Global component states apply a **_state_** class on the **wrapper**. The naming convention for state class names follows [SMACCS state rules](https://smacss.com/book/type-state/), for example `.is-error` is used when a component is in an error state so all child elements within that state class name can be styled easily.
+
+---
 
 ### Approach
 
