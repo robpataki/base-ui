@@ -6,6 +6,22 @@ import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import styles from './TextInput.module.scss';
 import type { TextInputProps } from './TextInput.type';
 
+/**
+ *
+ * The following CSS classes can be used to target specific parts of the component:
+ *
+ * |Class|Type|Value|Element|
+ * |:---|:---|:---|:---|
+ * |Component name|Component|`a1-text-input`|Wrapper|
+ * |Wrapper|Element|`[class*='wrapper']`|Wrapper|
+ * |Error|State|`[class*='is-error']`|Wrapper|
+ * |Disabled|State|`[class*='is-disabled']`|Wrapper|
+ * |Input field|Element|`[class*='input']`|`<input>` element|
+ * |Label|Element|`[class*='label']`|`<label>` element|
+ * |Hint text|Element|`[class*='hint']`|Hint text element|
+ * |Error text|Element|`[class*='error']`|Error text element|
+ *
+ */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
     label,

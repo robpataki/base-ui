@@ -5,6 +5,7 @@
   --primary-color: #111;
   --secondary-color: #6c757d;
   --error-color: #dc3545;
+  --border-color: #111;
 }
 
 .wrapper {
@@ -52,7 +53,7 @@
   padding: 0.5rem;
   color: inherit;
   font-size: 1em;
-  border: 2px solid #111;
+  border: 2px solid var(--border-color);
   border-radius: 4px;
 
   @include mixins.focus-indicator;

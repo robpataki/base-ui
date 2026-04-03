@@ -35,24 +35,34 @@
   box-shadow: 0 0 40px rgb(0 0 0 / 20%);
 
   .a1-text-input {
-    &[class*='wrapper'] {
-      position: relative;
+    position: relative;
 
+    @extend %focus-indicator-border;
+
+    &:focus-within::before {
+      width: var(--focus-indicator-width);
+    }
+
+    &[class*='is-error'] {
       @extend %focus-indicator-border;
 
-      &:focus-within::before {
+      &::before {
         width: var(--focus-indicator-width);
+        background-color: currentcolor;
       }
 
-      &[class*='is-error'] {
-        &:focus-within::before {
-          background-color: color.adjust(crimson, $lightness: -20%);
-        }
+      &:focus-within::before {
+        background-color: color.adjust(crimson, $lightness: -20%);
+      }
+
+      [class*='input'] {
+        background-color: transparent;
       }
     }
 
     [class*='input'] {
       width: 100%;
+      background-color: rgb(0 0 0 / 2%);
     }
 
     &:last-child {
@@ -94,23 +104,11 @@
 
     &[class*='is-error'] {
       color: var(--error-font-color);
-
-      @extend %focus-indicator-border;
-
-      &::before {
-        width: var(--focus-indicator-width);
-        background-color: currentcolor;
-      }
-
-      [class*='input'] {
-        background-color: transparent;
-      }
     }
   }
 
   [class*='input'] {
-    background-color: rgb(0 0 0 / 2%);
-    border: 2px solid black;
+    border: 2px solid var(--default-font-color);
     border-radius: 0;
   }
 

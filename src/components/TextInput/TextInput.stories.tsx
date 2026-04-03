@@ -6,13 +6,7 @@ const meta = {
   title: 'Components/TextInput',
   component: TextInput,
   parameters: {
-    layout: 'centered',
-    docs: {
-      description: {
-        component:
-          'A flexible text input component with support for labels, error states, helper text, and accessibility features.'
-      }
-    }
+    layout: 'centered'
   },
   argTypes: {
     label: {
@@ -52,13 +46,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/**
- * The default TextInput with no additional configuration.
- */
 export const Default: Story = {};
 
 /**
- * TextInput with helper text to provide additional context.
+ * TextInput with hint text to provide additional context.
  */
 export const WithHint: Story = {
   args: {
@@ -69,7 +60,7 @@ export const WithHint: Story = {
 };
 
 /**
- * TextInput in an error state with error message.
+ * TextInput in an error state showing error text.
  */
 export const WithError: Story = {
   args: {
@@ -93,7 +84,7 @@ export const Disabled: Story = {
 };
 
 /**
- * TextInput with a pre-filled value. component is controlled and requires an onChange handler to update the value.
+ * TextInput with a pre-filled value. Component is controlled and requires an onChange handler to update the value.
  */
 export const WithValue: Story = {
   args: {
@@ -113,18 +104,7 @@ export const WithDefaultValue: Story = {
 };
 
 /**
- *
- * The following selectors can be used to target specific parts of the TextInput component:
- *
- * - **Global component class:** `a1-text-input`
- * - **Wrapper element:** `[class*='wrapper']`
- * - **State classes (on the wrapper):** `[class*='is-error']`, `[class*='is-disabled']`
- * - **Input field:** `[class*='input']`
- * - **Label:** `[class*='label']`
- * - **Hint text:** `[class*='hint']`
- * - **Error message:** `[class*='error']`
- *
- * This story uses styles directly from the `TextInput.customStyles.scss` file, which is imported in `preview.tsx`. You can modify the styles there to see the changes reflected in this story.
+ * This story uses custom styles loaded from the `TextInput.customStyles.scss` file.
  */
 export const CustomStyles: Story = {
   args: {
@@ -136,7 +116,7 @@ export const CustomStyles: Story = {
 };
 
 /**
- * Multiple TextInput fields in a form layout using custom styles.
+ * Custom form example showing multiple TextInput components with custom styles applied to the form and inputs from the `TextInput.customStyles.scss` file.
  */
 export const FormWithCustomStylesExample: Story = {
   render: () => (
