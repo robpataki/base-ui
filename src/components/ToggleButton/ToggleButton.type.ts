@@ -6,6 +6,10 @@ export interface ToggleButtonProps extends BaseComponentProps {
    */
   label: string;
   /**
+   * Provides an accessible name when in toggled state
+   */
+  labelToggled?: string;
+  /**
    * Event callback to handle toggle state changes
    */
   onChange?: (isToggled: boolean) => void;

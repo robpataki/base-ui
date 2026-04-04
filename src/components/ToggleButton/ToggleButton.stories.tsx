@@ -10,7 +10,9 @@ const meta = {
   },
   argTypes: {},
   args: {
-    label: 'Username',
+    label: 'Lights off',
+    labelToggled: 'Lights on',
+    isToggled: true,
     onChange: action('onChange')
   }
 } satisfies Meta<typeof ToggleButton>;

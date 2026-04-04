@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import styles from './ToggleButton.module.scss';
 import type { ToggleButtonProps } from './ToggleButton.type';
@@ -10,35 +10,19 @@ import type { ToggleButtonProps } from './ToggleButton.type';
 export const ToggleButton = (props: ToggleButtonProps) => {
   const {
     label,
+    labelToggled,
     onChange,
     isToggled: _isToggled = false,
     id,
     dataTestId,
     className: _className
   } = props;
-  const isFirstToggle = useRef<boolean>(true);
+  const [isToggled, setIsToggled] = useState(_isToggled);
 
-  const [isToggled, setIsToggled] = useState(false);
   const handleClick = () => {
     setIsToggled(!isToggled);
+    onChange?.(!isToggled);
   };
-
-  useEffect(() => {
-    if (!isFirstToggle.current) {
-      if (onChange) {
-        onChange(isToggled);
-      }
-    } else {
-      isFirstToggle.current = false;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isToggled]);
-
-  useEffect(() => {
-    if (_isToggled) {
-      setIsToggled(_isToggled);
-    }
-  }, [_isToggled]);
 
   const className = classNames(
     styles.wrapper,
@@ -61,9 +45,7 @@ export const ToggleButton = (props: ToggleButtonProps) => {
         className={styles.button}
         aria-pressed={isToggled}
       >
-        <VisuallyHidden>
-          {label} {isToggled ? 'ON' : 'OFF'}
-        </VisuallyHidden>
+        <VisuallyHidden>{isToggled ? labelToggled : label}</VisuallyHidden>
         <div className={styles.toggle}></div>
       </button>
     </div>
