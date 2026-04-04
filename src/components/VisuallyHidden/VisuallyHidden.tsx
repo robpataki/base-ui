@@ -19,5 +19,7 @@ const VisuallyHidden = (props: VisuallyHiddenProps) => {
     children
   );
 };
-export default VisuallyHidden;
+
 VisuallyHidden.displayName = 'VisuallyHidden';
+
+export default VisuallyHidden;

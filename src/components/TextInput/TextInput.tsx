@@ -22,7 +22,7 @@ import type { TextInputProps } from './TextInput.type';
  * |Error text|Element|`[class*='error']`|Error text element|
  *
  */
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
     label,
     error,
@@ -85,3 +85,5 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
 });
 
 TextInput.displayName = 'TextInput';
+
+export default TextInput;

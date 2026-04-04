@@ -16,11 +16,9 @@
   }
 }
 
-:root {
-  --focus-indicator-width: 0.6rem;
-}
-
 .my-custom-form {
+  --focus-indicator-width: 0.6rem;
+
   position: relative;
   display: flex;
   flex-direction: column;

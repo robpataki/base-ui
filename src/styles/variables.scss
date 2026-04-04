@@ -1,0 +1,19 @@
+:root {
+  /* Typography */
+  --a1-font-family: menlo, consolas, monaco, adwaita mono, liberation mono, lucida console, monospace;
+  --a1-font-color-primary: #111;
+  --a1-font-color-secondary: #6c757d;
+  --a1-font-color-error: #dc3545;
+
+  /* Input controls */
+  --a1-input-border-color: #111;
+  --a1-input-bg-color: #fff;
+  --a1-input-border-thickness: 3px;
+  --a1-input-border-radius: 4px;
+  --a1-input-height: 2.5rem;
+  --a1-input-box-shadow: 1px 1px 5px 0 rgb(0 0 0 / 30%);
+
+  /* Focus indicator */
+  --a1-col-focus-primary: lime;
+  --a1-col-focus-secondary: #111;
+}
