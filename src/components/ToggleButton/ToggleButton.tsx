@@ -33,17 +33,13 @@ export const ToggleButton = (props: ToggleButtonProps) => {
   );
 
   return (
-    <div
-      {...{ id, className }}
-      data-testid={dataTestId}
-      aria-live='polite'
-      aria-atomic='true'
-    >
+    <div {...{ id, className }} data-testid={dataTestId}>
       <button
+        role='switch'
         type='button'
         onClick={handleClick}
         className={styles.button}
-        aria-pressed={isToggled}
+        aria-checked={isToggled}
       >
         <VisuallyHidden>{isToggled ? labelToggled : label}</VisuallyHidden>
         <div className={styles.toggle}></div>
