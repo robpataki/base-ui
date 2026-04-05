@@ -1,0 +1,96 @@
+@use 'sass:color';
+@use '../../styles/mixins';
+@use '../../styles/transitions';
+@use '../../styles/variables';
+
+$-border-radius: 2rem;
+
+.wrapper {
+  @include mixins.input-style;
+
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+
+  &:checked + .track {
+    background-color: var(--a1-col-focus-primary);
+
+    .thumb-wrapper {
+      transform: translateX(100%);
+    }
+
+    .thumb {
+      transform: translateX(calc(-100% - 2 * var(--a1-input-border-thickness)));
+    }
+  }
+
+  @include mixins.focus-indicator($selector: '+ .track .track-inner');
+}
+
+.track {
+  position: relative;
+  display: block;
+  height: var(--a1-input-height);
+  background-color: color.adjust(#111, $lightness: 90%);
+  border-radius: $-border-radius;
+  box-shadow: var(--a1-input-box-shadow);
+  aspect-ratio: 1.75 / 1;
+  cursor: pointer;
+
+  &-inner {
+    position: absolute;
+    border: var(--a1-input-border-thickness) solid var(--a1-input-border-color);
+    border-radius: $-border-radius;
+    inset: 0;
+  }
+
+  @include mixins.if-motion-allowed {
+    transition: background-color 0.3s var(--a1-ease-out-quart) 0.1s;
+  }
+}
+
+.thumb {
+  position: absolute;
+  left: var(--a1-input-border-thickness);
+  height: calc(100% - 2 * var(--a1-input-border-thickness));
+  aspect-ratio: 1 / 1;
+  background-color: var(--a1-input-border-color);
+  border-radius: $-border-radius;
+
+  &-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  &,
+  &-wrapper {
+    @include mixins.if-motion-allowed {
+      transition: transform 0.3s var(--a1-ease-out-quart) 0.1s;
+    }
+  }
+}
+
+.box {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+}

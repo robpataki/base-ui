@@ -10,6 +10,14 @@
   clip-path: inset(50%);
 }
 
+@mixin input-style {
+  margin-bottom: 2rem;
+  color: var(--a1-font-color-primary);
+  font-size: 1rem;
+  font-family: var(--a1-font-family);
+  line-height: 1.5;
+}
+
 @mixin -apply-focus-indicator-styles($-on: true) {
   @if $-on {
     outline: 4px solid var(--a1-col-focus-secondary);
@@ -21,17 +29,23 @@
   }
 }
 
-@mixin focus-indicator {
+@mixin focus-indicator($selector: '&') {
   &:focus {
-    @include -apply-focus-indicator-styles(true);
+    #{$selector} {
+      @include -apply-focus-indicator-styles(true);
+    }
   }
 
   &:focus:not(:focus-visible) {
-    @include -apply-focus-indicator-styles(false);
+    #{$selector} {
+      @include -apply-focus-indicator-styles(false);
+    }
   }
 
   &:focus-visible {
-    @include -apply-focus-indicator-styles(true);
+    #{$selector} {
+      @include -apply-focus-indicator-styles(true);
+    }
   }
 }
 

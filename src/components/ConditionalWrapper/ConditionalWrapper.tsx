@@ -1,4 +1,4 @@
-import type { ConditionalWrapperProps } from './CondfitionalWrapper.type';
+import type { ConditionalWrapperProps } from './ConditionalWrapper.type';
 
 export const ConditionalWrapper = (props: ConditionalWrapperProps) => {
   const { condition, wrap, children } = props;

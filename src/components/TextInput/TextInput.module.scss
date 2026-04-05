@@ -2,11 +2,7 @@
 @use '../../styles/mixins';
 
 .wrapper {
-  margin-bottom: 2rem;
-  color: var(--a1-font-color-primary);
-  font-size: 1rem;
-  font-family: var(--a1-font-family);
-  line-height: 1.5;
+  @include mixins.input-style;
 
   &.is-error {
     color: var(--a1-font-color-error);
