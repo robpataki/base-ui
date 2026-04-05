@@ -3,7 +3,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
-import { TextInput } from './TextInput';
+import TextInput from './TextInput';
 
 describe('TextInput', () => {
   const defaultMockProps = {
