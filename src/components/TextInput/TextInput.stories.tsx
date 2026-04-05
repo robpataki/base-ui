@@ -120,30 +120,30 @@ export const CustomStyles: Story = {
  */
 export const FormWithCustomStylesExample: Story = {
   render: () => (
-    <div className='my-custom-form'>
+    <div className="my-custom-form">
       <TextInput
-        label='First name'
-        hint='Your legal first name'
-        defaultValue='John'
-        className='my-custom-text-input'
+        label="First name"
+        hint="Your legal first name"
+        defaultValue="John"
+        className="my-custom-text-input"
       />
       <TextInput
-        label='Last name'
-        hint='Your legal last name'
-        defaultValue='Doe'
-        className='my-custom-text-input'
+        label="Last name"
+        hint="Your legal last name"
+        defaultValue="Doe"
+        className="my-custom-text-input"
       />
       <TextInput
-        label='Email'
+        label="Email"
         hint="We'll use this to contact you"
-        defaultValue='john@doe.com'
-        className='my-custom-text-input'
+        defaultValue="john@doe.com"
+        className="my-custom-text-input"
       />
       <TextInput
-        label='Confirm email'
-        error='Email addresses do not match'
-        defaultValue='jon@doe.com'
-        className='my-custom-text-input'
+        label="Confirm email"
+        error="Email addresses do not match"
+        defaultValue="jon@doe.com"
+        className="my-custom-text-input"
       />
     </div>
   )

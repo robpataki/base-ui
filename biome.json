@@ -58,7 +58,7 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "jsxQuoteStyle": "single",
+      "jsxQuoteStyle": "double",
       "arrowParentheses": "asNeeded",
       "trailingCommas": "none"
     }

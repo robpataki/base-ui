@@ -28,7 +28,7 @@ describe('TextInput', () => {
     const { container } = render(
       <TextInput
         label={defaultMockProps.label}
-        id='custom-id'
+        id="custom-id"
         hint={defaultMockProps.hint}
         error={defaultMockProps.error}
       />
@@ -44,7 +44,7 @@ describe('TextInput', () => {
   });
 
   it('renders with custom css class', () => {
-    render(<TextInput label={defaultMockProps.label} className='custom-class' />);
+    render(<TextInput label={defaultMockProps.label} className="custom-class" />);
     const input = screen.getByRole('textbox', { name: defaultMockProps.label });
     expect(input.parentElement).toHaveClass(/custom-class/);
   });
@@ -137,7 +137,7 @@ describe('TextInput', () => {
     it('renders elements with correct class names with custom class', () => {
       render(
         <TextInput
-          className='my-custom-class'
+          className="my-custom-class"
           label={defaultMockProps.label}
           hint={defaultMockProps.hint}
           error={defaultMockProps.error}

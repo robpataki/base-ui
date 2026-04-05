@@ -31,17 +31,17 @@ describe('VisuallyHidden', () => {
   });
 
   it('renders with custom id', () => {
-    render(<VisuallyHidden id='custom-id'>You can't see me</VisuallyHidden>);
+    render(<VisuallyHidden id="custom-id">You can't see me</VisuallyHidden>);
     expect(screen.getByText("You can't see me")).toHaveAttribute('id', 'custom-id');
   });
 
   it('renders with custom className', () => {
-    render(<VisuallyHidden className='custom-class'>You can't see me</VisuallyHidden>);
+    render(<VisuallyHidden className="custom-class">You can't see me</VisuallyHidden>);
     expect(screen.getByText("You can't see me")).toHaveClass('custom-class');
   });
 
   it('renders with custom data-testid', () => {
-    render(<VisuallyHidden dataTestId='test-id'>You can't see me</VisuallyHidden>);
+    render(<VisuallyHidden dataTestId="test-id">You can't see me</VisuallyHidden>);
     expect(screen.getByTestId('test-id')).toBeInTheDocument();
   });
 });

@@ -69,7 +69,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
         {...rest}
         ref={ref}
         id={inputId}
-        type='text'
+        type="text"
         disabled={isDisabled}
         className={styles.input}
         aria-invalid={!!error}

@@ -7,7 +7,7 @@ describe('ConditionalWrapper', () => {
     render(
       <ConditionalWrapper
         condition={false}
-        wrap={children => <div data-testid='wrapper'>{children}</div>}
+        wrap={children => <div data-testid="wrapper">{children}</div>}
       >
         <span>Test</span>
       </ConditionalWrapper>
@@ -20,7 +20,7 @@ describe('ConditionalWrapper', () => {
     render(
       <ConditionalWrapper
         condition={true}
-        wrap={children => <div data-testid='wrapper'>{children}</div>}
+        wrap={children => <div data-testid="wrapper">{children}</div>}
       >
         <span>Test</span>
       </ConditionalWrapper>

@@ -9,41 +9,41 @@ export default defineConfig({
     dts({
       include: ['src'],
       rollupTypes: true,
-      outDir: 'dist',
-    }),
+      outDir: 'dist'
+    })
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
-    },
+      '@': resolve(__dirname, './src')
+    }
   },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'BaseUI',
       formats: ['es', 'cjs'],
-      fileName: (format) => {
+      fileName: format => {
         if (format === 'es') {
           return 'index.mjs';
         }
         return 'index.cjs';
-      },
+      }
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM',
-        },
-      },
+          'react-dom': 'ReactDOM'
+        }
+      }
     },
     cssCodeSplit: false,
-    sourcemap: true,
+    sourcemap: true
   },
   css: {
     modules: {
-      localsConvention: 'camelCase',
-    },
-  },
+      localsConvention: 'camelCase'
+    }
+  }
 });

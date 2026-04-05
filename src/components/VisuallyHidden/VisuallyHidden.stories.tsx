@@ -42,6 +42,6 @@ export const Default: Story = {};
  */
 export const BlockingFocus: Story = {
   args: {
-    children: <button type='button'>Focusable content that cannot be focused</button>
+    children: <button type="button">Focusable content that cannot be focused</button>
   }
 };
