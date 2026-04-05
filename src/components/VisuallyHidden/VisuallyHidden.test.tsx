@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import VisuallyHidden from './VisuallyHidden';
+import { VisuallyHidden } from './VisuallyHidden';
 import type { VisuallyHiddenElementTagName } from './VisuallyHidden.type';
 
 describe('VisuallyHidden', () => {

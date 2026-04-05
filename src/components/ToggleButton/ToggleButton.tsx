@@ -49,5 +49,3 @@ export const ToggleButton = (props: ToggleButtonProps) => {
 };
 
 ToggleButton.displayName = 'ToggleButton';
-
-export default ToggleButton;

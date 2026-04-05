@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { forwardRef } from 'react';
 import { COMPONENT_IDS } from '@/constants';
 import { createUniqueId } from '@/helpers/createUniqueId';
-import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
+import { VisuallyHidden } from '../VisuallyHidden';
 import styles from './TextInput.module.scss';
 import type { TextInputProps } from './TextInput.type';
 
@@ -22,7 +22,7 @@ import type { TextInputProps } from './TextInput.type';
  * |Error text|Element|`[class*='error']`|Error text element|
  *
  */
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const {
     label,
     error,
@@ -85,5 +85,3 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
 });
 
 TextInput.displayName = 'TextInput';
-
-export default TextInput;
