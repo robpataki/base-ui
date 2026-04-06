@@ -106,4 +106,8 @@ $-border-radius: 2rem;
   gap: 1rem;
   align-items: center;
   cursor: pointer;
+
+  @include mixins.if-motion-allowed {
+    transition: opacity 0.3s var(--a1-ease-out-quart);
+  }
 }
