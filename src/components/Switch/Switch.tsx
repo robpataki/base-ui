@@ -8,7 +8,7 @@ import type { SwitchProps } from './Switch.type';
 
 /**
  *
- * The following CSS classes can be used to target specific parts of the component:
+ * The following CSS classes can be used to style specific parts of the component:
  *
  * |Class|Type|Value|Element|
  * |:---|:---|:---|:---|

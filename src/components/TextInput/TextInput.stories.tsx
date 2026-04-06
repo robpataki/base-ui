@@ -48,20 +48,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-/**
- * TextInput with hint text to provide additional context.
- */
 export const WithHint: Story = {
   args: {
     label: 'Username',
     maxLength: 10,
-    hint: 'Maximum 10 characters or less.'
+    hint: 'Maximum 10 characters or less'
   }
 };
 
-/**
- * TextInput in an error state showing error text.
- */
 export const WithError: Story = {
   args: {
     label: 'Email',
@@ -71,21 +65,15 @@ export const WithError: Story = {
   }
 };
 
-/**
- * Disabled TextInput that cannot be interacted with.
- */
 export const Disabled: Story = {
   args: {
     label: 'Username',
     isDisabled: true,
     value: 'JohnDoe123',
-    hint: 'You cannot change your username.'
+    hint: 'You cannot change your username'
   }
 };
 
-/**
- * TextInput with a pre-filled value. Component is controlled and requires an onChange handler to update the value.
- */
 export const WithValue: Story = {
   args: {
     label: 'Username',
@@ -93,9 +81,6 @@ export const WithValue: Story = {
   }
 };
 
-/**
- * TextInput with a default value. Component is uncontrolled and manages its own state.
- */
 export const WithDefaultValue: Story = {
   args: {
     label: 'Username',
@@ -103,9 +88,6 @@ export const WithDefaultValue: Story = {
   }
 };
 
-/**
- * This story uses custom styles loaded from the `TextInput.customStyles.scss` file.
- */
 export const CustomStyles: Story = {
   args: {
     label: 'First name',

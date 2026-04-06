@@ -3,8 +3,8 @@ import { forwardRef } from 'react';
 import { COMPONENT_IDS, DEFAULT_ERROR_PREFIX } from '@/constants';
 import { createUniqueId } from '@/helpers/createUniqueId';
 import { VisuallyHidden } from '../VisuallyHidden';
-import styles from './TextInput.module.scss';
-import type { TextInputProps } from './TextInput.type';
+import styles from './TextArea.module.scss';
+import type { TextAreaProps } from './TextArea.type';
 
 /**
  *
@@ -12,17 +12,17 @@ import type { TextInputProps } from './TextInput.type';
  *
  * |Class|Type|Value|Element|
  * |:---|:---|:---|:---|
- * |Component name|Component|`a1-text-input`|Wrapper|
+ * |Component name|Component|`a1-text-area`|Wrapper|
  * |Wrapper|Element|`[class*='wrapper']`|Wrapper|
  * |Error|State|`[class*='is-error']`|Wrapper|
  * |Disabled|State|`[class*='is-disabled']`|Wrapper|
- * |Input field|Element|`[class*='input']`|`<input>` element|
+ * |Textarea field|Element|`[class*='textarea']`|`<textarea>` element|
  * |Label|Element|`[class*='label']`|`<label>` element|
  * |Hint text|Element|`[class*='hint']`|Hint text element|
  * |Error text|Element|`[class*='error']`|Error text element|
  *
  */
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
   const {
     label,
     error,
@@ -35,12 +35,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   } = props;
 
   const id = _id || createUniqueId();
-  const inputId = `${id}__input`;
+  const textareaId = `${id}__textarea`;
   const errorId = `${id}__error`;
   const hintId = `${id}__hint`;
 
   const className = classNames(
-    COMPONENT_IDS.TextInput,
+    COMPONENT_IDS.TextArea,
     styles.wrapper,
     {
       [styles['is-error']]: error,
@@ -55,7 +55,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   return (
     <div {...{ className, id }}>
       {label && (
-        <label htmlFor={inputId} className={styles.label}>
+        <label htmlFor={textareaId} className={styles.label}>
           {label}
         </label>
       )}
@@ -65,13 +65,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
           {error}
         </div>
       )}
-      <input
+      <textarea
         {...rest}
         ref={ref}
-        id={inputId}
-        type="text"
+        id={textareaId}
         disabled={isDisabled}
-        className={styles.input}
+        className={styles.textarea}
         aria-invalid={!!error}
         aria-describedby={ariaDescribedBy || undefined}
       />
@@ -84,4 +83,4 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
   );
 });
 
-TextInput.displayName = 'TextInput';
+TextArea.displayName = 'TextArea';

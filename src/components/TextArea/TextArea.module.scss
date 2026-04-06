@@ -5,13 +5,13 @@
   @include mixins.form-control-group-styles;
 
   &.is-error {
-    .input {
+    .textarea {
       border-color: var(--a1-font-color-error);
     }
   }
 
   &.is-disabled {
-    .input {
+    .textarea {
       color: var(--a1-font-color-secondary);
       border-color: var(--a1-font-color-secondary);
       cursor: not-allowed;
@@ -20,7 +20,7 @@
 }
 
 .label,
-.input,
+.textarea,
 .hint,
 .error {
   display: block;
@@ -33,11 +33,11 @@
   margin-bottom: 1rem;
 }
 
-.input {
+.textarea {
   box-sizing: border-box;
   min-width: 24rem;
   max-width: 100%;
-  height: var(--a1-input-height);
+  min-height: var(--a1-input-height);
   padding: 0.5rem;
   color: inherit;
   font-size: 1em;
