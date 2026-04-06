@@ -9,6 +9,7 @@ $font-family:
   monospace;
 $font-color-primary: #111;
 $font-color-secondary: #6c757d;
+$font-color-tertiary: #fff;
 $font-color-error: #dc3545;
 
 /* Colours / input */
@@ -30,6 +31,7 @@ $col-focus-secondary: #111;
   --a1-font-family: #{$font-family};
   --a1-font-color-primary: #{$font-color-primary};
   --a1-font-color-secondary: #{$font-color-secondary};
+  --a1-font-color-tertiary: #{$font-color-tertiary};
   --a1-font-color-error: #{$font-color-error};
 
   /* Input controls */
