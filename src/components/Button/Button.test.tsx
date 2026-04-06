@@ -103,19 +103,17 @@ describe('Button', () => {
     expect(button).toHaveAttribute('popoverTarget', 'target-id');
   });
 
-  describe('Keyboard navigation', () => {
-    it('is fully keyboard operable', async () => {
-      const user = userEvent.setup();
-      const mockOnClick = vi.fn();
-      render(<Button onClick={mockOnClick}>{defaultMockProps.label}</Button>);
-      const button = screen.getByRole('button', { name: defaultMockProps.label });
+  it('is fully keyboard operable', async () => {
+    const user = userEvent.setup();
+    const mockOnClick = vi.fn();
+    render(<Button onClick={mockOnClick}>{defaultMockProps.label}</Button>);
+    const button = screen.getByRole('button', { name: defaultMockProps.label });
 
-      await user.tab();
-      expect(button).toHaveFocus();
-      await user.keyboard('[Space]');
-      await user.keyboard('[Enter]');
-      expect(mockOnClick).toHaveBeenCalledTimes(2);
-    });
+    await user.tab();
+    expect(button).toHaveFocus();
+    await user.keyboard('[Space]');
+    await user.keyboard('[Enter]');
+    expect(mockOnClick).toHaveBeenCalledTimes(2);
   });
 
   it('uses correct displayName for debugging', () => {

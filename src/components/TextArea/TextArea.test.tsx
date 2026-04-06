@@ -50,8 +50,9 @@ describe('TextArea', () => {
   });
 
   it('disables the textarea when isDisabled prop is true', () => {
-    render(<TextArea label={defaultMockProps.label} isDisabled />);
+    const { container } = render(<TextArea label={defaultMockProps.label} isDisabled />);
     const textarea = screen.getByRole('textbox', { name: defaultMockProps.label });
+    expect(container.firstChild).toHaveClass(/is-disabled/);
     expect(textarea).toBeDisabled();
   });
 

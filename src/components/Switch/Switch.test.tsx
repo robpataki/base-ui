@@ -111,10 +111,11 @@ describe('Switch', () => {
     it('disables the checkbox when isDisabled prop is true (uncontrolled mode)', async () => {
       const user = userEvent.setup();
       const mockOnChange = vi.fn();
-      render(
+      const { container } = render(
         <Switch label={defaultMockProps.label} isDisabled onChange={mockOnChange} />
       );
       const checkbox = screen.getByRole('checkbox', { name: defaultMockProps.label });
+      expect(container.firstChild).toHaveClass(/is-disabled/);
       expect(checkbox).not.toBeChecked();
       await user.click(checkbox);
       await user.click(checkbox);
@@ -203,6 +204,23 @@ describe('Switch', () => {
       expect(wrapper).toHaveClass(/wrapper/);
       expect(wrapper).toHaveClass('my-switch');
     });
+  });
+
+  it('is fully keyboard operable', async () => {
+    const user = userEvent.setup();
+    const mockOnChange = vi.fn();
+    render(<Switch label={defaultMockProps.label} onChange={mockOnChange} />);
+    const checkbox = screen.getByRole('checkbox', { name: defaultMockProps.label });
+
+    await user.tab();
+    expect(checkbox).toHaveFocus();
+    await user.keyboard('[Space]');
+    expect(checkbox).toBeChecked();
+    await user.keyboard('[Space]');
+    expect(checkbox).not.toBeChecked();
+    await user.keyboard('[Enter]');
+    expect(checkbox).not.toBeChecked();
+    expect(mockOnChange).toHaveBeenCalledTimes(2);
   });
 
   it('uses correct displayName for debugging', () => {

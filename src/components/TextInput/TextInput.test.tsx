@@ -50,8 +50,9 @@ describe('TextInput', () => {
   });
 
   it('disables the input when isDisabled prop is true', () => {
-    render(<TextInput label={defaultMockProps.label} isDisabled />);
+    const { container } = render(<TextInput label={defaultMockProps.label} isDisabled />);
     const input = screen.getByRole('textbox', { name: defaultMockProps.label });
+    expect(container.firstChild).toHaveClass(/is-disabled/);
     expect(input).toBeDisabled();
   });
 
