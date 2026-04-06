@@ -47,7 +47,8 @@
         "useConsistentBuiltinInstantiation": "error",
         "useFragmentSyntax": "error",
         "useShorthandAssign": "error",
-        "useArrayLiterals": "error"
+        "useArrayLiterals": "error",
+        "useConsistentCurlyBraces": { "level": "error", "fix": "safe" }
       },
       "suspicious": {
         "useAwait": "error",
