@@ -2,7 +2,7 @@
 @use '../../styles/mixins';
 
 .wrapper {
-  @include mixins.input-style;
+  @include mixins.form-control-group-styles;
 
   &.is-error {
     color: var(--a1-font-color-error);

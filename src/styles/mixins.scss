@@ -10,7 +10,7 @@
   clip-path: inset(50%);
 }
 
-@mixin input-style {
+@mixin form-control-group-styles {
   margin-bottom: 2rem;
   color: var(--a1-font-color-primary);
   font-size: 1rem;

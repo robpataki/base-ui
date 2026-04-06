@@ -19,7 +19,7 @@ export interface SwitchProps extends BaseComponentProps {
   statusLabelOff?: string;
   /**
    * Makes the status labels visible when true
-   * @default false
+   * @default true
    */
   isStatusLabelVisible?: boolean;
   /**

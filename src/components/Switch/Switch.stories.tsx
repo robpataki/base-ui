@@ -10,9 +10,9 @@ const meta = {
   },
   argTypes: {},
   args: {
-    label: 'Reduce motion',
-    statusLabelOn: 'Enabled',
-    statusLabelOff: 'Disabled',
+    label: 'Personalised experience',
+    statusLabelOn: 'Yes, please',
+    statusLabelOff: 'No, thank you',
     isStatusLabelVisible: true,
     isDisabled: false,
     onChange: action('onChange')
@@ -23,3 +23,27 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const ControlledState: Story = {
+  args: {
+    isSwitched: true
+  }
+};
+
+export const UncontrolledState: Story = {
+  args: {
+    isDefaultSwitched: true
+  }
+};
+
+export const HideStatusLabel: Story = {
+  args: {
+    isStatusLabelVisible: false
+  }
+};
+
+export const Disabled: Story = {
+  args: {
+    isDisabled: true
+  }
+};

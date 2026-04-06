@@ -38,6 +38,7 @@ describe('VisuallyHidden', () => {
   it('renders with custom className', () => {
     render(<VisuallyHidden className="custom-class">You can't see me</VisuallyHidden>);
     expect(screen.getByText("You can't see me")).toHaveClass('custom-class');
+    expect(screen.getByText("You can't see me")).toHaveClass('a1-visually-hidden');
   });
 
   it('renders with custom data-testid', () => {

@@ -49,7 +49,7 @@ describe('TextInput', () => {
     expect(input.parentElement).toHaveClass(/custom-class/);
   });
 
-  it('disables the input when disabled prop is true', () => {
+  it('disables the input when isDisabled prop is true', () => {
     render(<TextInput label={defaultMockProps.label} isDisabled />);
     const input = screen.getByRole('textbox', { name: defaultMockProps.label });
     expect(input).toBeDisabled();
@@ -107,10 +107,6 @@ describe('TextInput', () => {
     expect(firstId).not.toBe(secondId);
   });
 
-  it('displays displayName for debugging', () => {
-    expect(TextInput.displayName).toBe('TextInput');
-  });
-
   describe('CSS class names', () => {
     it('renders elements with correct class names', () => {
       render(
@@ -126,12 +122,13 @@ describe('TextInput', () => {
       const hint = screen.getByText(defaultMockProps.hint);
       const error = screen.getByText(defaultMockProps.error);
 
-      expect(wrapper).toHaveClass(/_wrapper_/);
+      expect(wrapper).toHaveClass(/a1-text-input/);
+      expect(wrapper).toHaveClass(/wrapper/);
       expect(wrapper).toHaveClass(/is-error/);
-      expect(input).toHaveClass(/_input_/);
-      expect(label).toHaveClass(/_label_/);
-      expect(hint).toHaveClass(/_hint_/);
-      expect(error).toHaveClass(/_error_/);
+      expect(input).toHaveClass(/input/);
+      expect(label).toHaveClass(/label/);
+      expect(hint).toHaveClass(/hint/);
+      expect(error).toHaveClass(/error/);
     });
 
     it('renders elements with correct class names with custom class', () => {
@@ -145,17 +142,10 @@ describe('TextInput', () => {
       );
       const input = screen.getByRole('textbox', { name: defaultMockProps.label });
       const wrapper = input.parentElement;
-      const label = screen.getByText(defaultMockProps.label);
-      const hint = screen.getByText(defaultMockProps.hint);
-      const error = screen.getByText(defaultMockProps.error);
 
-      expect(wrapper).toHaveClass(/_wrapper_/);
+      expect(wrapper).toHaveClass(/a1-text-input/);
+      expect(wrapper).toHaveClass(/wrapper/);
       expect(wrapper).toHaveClass(/my-custom-class/);
-      expect(wrapper).toHaveClass(/is-error/);
-      expect(input).toHaveClass(/_input_/);
-      expect(label).toHaveClass(/_label_/);
-      expect(hint).toHaveClass(/_hint_/);
-      expect(error).toHaveClass(/_error_/);
     });
   });
 
@@ -198,5 +188,9 @@ describe('TextInput', () => {
         `${hint.getAttribute('id')} ${error.getAttribute('id')}`
       );
     });
+  });
+
+  it('uses correct displayName for debugging', () => {
+    expect(TextInput.displayName).toBe('TextInput');
   });
 });

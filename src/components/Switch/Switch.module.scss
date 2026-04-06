@@ -6,11 +6,20 @@
 $-border-radius: 2rem;
 
 .wrapper {
-  @include mixins.input-style;
+  @include mixins.form-control-group-styles;
+
+  display: block;
+  min-width: 200px;
 
   &.is-disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
+    .label,
+    .controls {
+      cursor: not-allowed;
+    }
+
+    .controls {
+      opacity: var(--a1-input-disabled-opacity);
+    }
   }
 }
 
@@ -28,30 +37,29 @@ $-border-radius: 2rem;
   height: 1px;
   opacity: 0;
 
-  &:checked + .track {
-    background-color: var(--a1-col-focus-primary);
+  &:checked + .toggle {
+    background-color: var(--a1-input-bg-active-color);
 
-    .thumb-wrapper {
+    .indicator {
       transform: translateX(100%);
-    }
 
-    .thumb {
-      transform: translateX(calc(-100% - 2 * var(--a1-input-border-thickness)));
+      &-inner {
+        transform: translateX(calc(-100% - 2 * var(--a1-input-border-thickness)));
+      }
     }
   }
 
-  @include mixins.focus-indicator($selector: '+ .track .track-inner');
+  @include mixins.focus-indicator($selector: '+ .toggle .toggle-inner');
 }
 
-.track {
+.toggle {
   position: relative;
   display: block;
   height: var(--a1-input-height);
-  background-color: color.adjust(#111, $lightness: 90%);
+  background-color: color.adjust(variables.$input-border-color, $lightness: 55%);
   border-radius: $-border-radius;
   box-shadow: var(--a1-input-box-shadow);
   aspect-ratio: 1.75 / 1;
-  cursor: pointer;
 
   &-inner {
     position: absolute;
@@ -65,32 +73,37 @@ $-border-radius: 2rem;
   }
 }
 
-.thumb {
-  position: absolute;
-  left: var(--a1-input-border-thickness);
-  height: calc(100% - 2 * var(--a1-input-border-thickness));
-  aspect-ratio: 1 / 1;
-  background-color: var(--a1-input-border-color);
-  border-radius: $-border-radius;
+.indicator {
+  inset: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
 
-  &-wrapper {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    pointer-events: none;
+  &-inner {
+    left: var(--a1-input-border-thickness);
+    height: calc(100% - 2 * var(--a1-input-border-thickness));
+    aspect-ratio: 1 / 1;
+    background-color: var(--a1-input-bg-color);
+    border-radius: $-border-radius;
   }
 
   &,
-  &-wrapper {
+  &-inner {
+    position: absolute;
+
     @include mixins.if-motion-allowed {
       transition: transform 0.3s var(--a1-ease-out-quart) 0.1s;
     }
   }
 }
 
-.box {
+.status-label {
+  display: block;
+}
+
+.controls {
   display: inline-flex;
   gap: 1rem;
   align-items: center;
+  cursor: pointer;
 }
