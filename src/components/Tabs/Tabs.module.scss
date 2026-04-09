@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/mixins';
 @use '../../styles/variables';
 @use '../../styles/transitions';
@@ -40,8 +41,11 @@ $-horizontal-space: 2rem;
     background-color: var(--a1-input-bg-active-color);
   }
 
-  &:hover {
-    font-weight: 700;
+  &:not(.is-disabled, .is-selected) {
+    &:hover {
+      font-weight: 700;
+      background-color: color.change(variables.$input-bg-active-color, $alpha: 20%);
+    }
   }
 
   @include mixins.if-motion-allowed {
