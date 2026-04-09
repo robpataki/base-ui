@@ -1,0 +1,63 @@
+@use '../../styles/mixins';
+@use '../../styles/variables';
+@use '../../styles/transitions';
+
+$-horizontal-space: 2rem;
+
+.wrapper {
+  width: 100%;
+}
+
+.tablist {
+  display: inline-flex;
+  gap: $-horizontal-space * 0.5;
+  margin-bottom: 0.2rem;
+  border-bottom: 2px solid var(--a1-input-border-color);
+}
+
+.tab {
+  @include mixins.reset-button-styles;
+  @include mixins.form-control-group-styles;
+  @include mixins.focus-indicator;
+
+  position: relative;
+  display: block;
+  height: var(--a1-input-height);
+  margin-bottom: 0;
+  padding: 0 $-horizontal-space;
+  font-weight: 400;
+  border-top-left-radius: var(--a1-input-border-radius);
+  border-top-right-radius: var(--a1-input-border-radius);
+
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: var(--a1-input-disabled-opacity);
+  }
+
+  &.is-selected {
+    color: var(--a1-font-color-tertiary);
+    font-weight: 700;
+    background-color: var(--a1-input-bg-active-color);
+  }
+
+  &:hover {
+    font-weight: 700;
+  }
+
+  @include mixins.if-motion-allowed {
+    transition:
+      background-color 0.3s var(--a1-ease-out-quart),
+      opacity 0.3s var(--a1-ease-out-quart),
+      color 0.3s var(--a1-ease-out-quart),
+      font-weight 0.4s var(--a1-ease-out-quart);
+  }
+}
+
+.tabpanel {
+  @include mixins.focus-indicator;
+
+  padding: $-horizontal-space;
+  font-size: 1rem;
+  font-family: var(--a1-font-family);
+  line-height: 1.5;
+}

@@ -6,6 +6,7 @@
 .wrapper {
   @include mixins.form-control-group-styles;
   @include mixins.focus-indicator;
+  @include mixins.reset-button-styles;
 
   position: relative;
   display: block;
@@ -13,9 +14,7 @@
   padding: 0 1rem;
   color: var(--a1-font-color-tertiary);
   background-color: var(--a1-input-bg-active-color);
-  border: none;
   border-radius: var(--a1-input-border-radius);
-  cursor: pointer;
 
   &.is-disabled {
     background-color: var(--a1-font-color-secondary);
