@@ -45,6 +45,8 @@
   );
 
   @if $has-offset {
+    position: relative;
+
     &::before {
       position: absolute;
       display: block;
@@ -54,12 +56,12 @@
       inset: calc(-1 * #{$-offset}) calc(-1 * #{$-offset}) calc(-1 * #{$-offset}) calc(-1 * #{$-offset});
     }
   } @else {
+    position: initial;
+
     &::before {
       content: none;
     }
   }
-
-  position: relative;
 
   &:focus {
     outline: none;
