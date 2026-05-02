@@ -1,0 +1,9 @@
+@use '../src/styles/mixins';
+
+button,
+a,
+input,
+textarea,
+select {
+  @include mixins.focus-indicator($-offset: 10px);
+}

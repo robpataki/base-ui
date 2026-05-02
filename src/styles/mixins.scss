@@ -1,3 +1,5 @@
+@use 'sass:meta';
+
 @mixin sr-only {
   position: absolute;
   width: 1px;
@@ -36,8 +38,32 @@
   }
 }
 
-@mixin focus-indicator($selector: '&') {
+@mixin focus-indicator($-selector: '&', $-offset: 0) {
+  $has-offset: $-offset != 0;
+  $selector: if(
+    sass($has-offset): '&::before' ; else: $-selector,
+  );
+
+  @if $has-offset {
+    &::before {
+      position: absolute;
+      display: block;
+      border-radius: var(--a1-input-border-radius);
+      content: '';
+      pointer-events: none;
+      inset: calc(-1 * #{$-offset}) calc(-1 * #{$-offset}) calc(-1 * #{$-offset}) calc(-1 * #{$-offset});
+    }
+  } @else {
+    &::before {
+      content: none;
+    }
+  }
+
+  position: relative;
+
   &:focus {
+    outline: none;
+
     #{$selector} {
       @include -apply-focus-indicator-styles(true);
     }

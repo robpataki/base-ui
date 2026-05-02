@@ -19,7 +19,7 @@ $-horizontal-space: 2rem;
 .tab {
   @include mixins.reset-button-styles;
   @include mixins.form-control-group-styles;
-  @include mixins.focus-indicator;
+  @include mixins.focus-indicator($-offset: 0);
 
   position: relative;
   display: block;
