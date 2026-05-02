@@ -3,6 +3,7 @@
 import classNames from 'classnames';
 import { type KeyboardEvent, useMemo, useRef, useState } from 'react';
 import { COMPONENT_IDS } from '@/constants';
+import { isFirstElementFocusable } from '@/helpers';
 import { createUniqueId } from '@/helpers/createUniqueId';
 import styles from './Tabs.module.scss';
 import type { TabSection, TabsProps } from './Tabs.type';
@@ -16,7 +17,17 @@ export const Tabs = (props: TabsProps) => {
     dataTestId
   } = props;
 
-  const internalId = useMemo(() => createUniqueId(), [createUniqueId]);
+  const internalId = useMemo(() => createUniqueId(), []);
+  const isTabPanelFocusable = useMemo(() => {
+    if (sections.length === 0) return;
+
+    for (let i = 0; i < sections.length; i++) {
+      if (!isFirstElementFocusable(sections[i]?.children)) {
+        return true;
+      }
+    }
+    return false;
+  }, [sections]);
   const [selectedIndex, setSelectedIndex] = useState<number>(_selectedIndex);
   const tabsRef = useRef<Array<HTMLButtonElement>>([]);
   const panelRef = useRef<Array<HTMLDivElement>>([]);
@@ -93,7 +104,7 @@ export const Tabs = (props: TabsProps) => {
                 role="tabpanel"
                 aria-labelledby={tabId}
                 hidden={selectedIndex !== index}
-                tabIndex={selectedIndex === index ? 0 : -1}
+                tabIndex={selectedIndex === index && isTabPanelFocusable ? 0 : -1}
                 ref={(el: HTMLDivElement) => {
                   panelRef.current[index] = el;
                 }}
